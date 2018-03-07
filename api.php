@@ -1,4 +1,5 @@
 <?php
+//test
 require_once 'session_start.php';
 
 if(isset($_GET["action"]) && $_GET["action"] == 'logout'){
