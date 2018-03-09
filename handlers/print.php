@@ -1,10 +1,13 @@
 <?php
 require_once 'session_start.php';
-class Print_out{
 
-    public static function login($couples){ ?>
-        <h2>Log in - Click on your wedding  </h2><?php
-        foreach($couples as $couple){
+class Print_out{
+    //print is a class with static function that prints HTML
+    public static function login($allCouples){ ?>
+        <h2>Log in - Click on your wedding  </h2>
+        <?php
+        foreach($allCouples as $couple){
+            //for each object in allCouples array print a link with an get parameter of coupleId = the couples id 
             ?>
                 <a href="api.php?coupleId=<?=$couple->Id?>"><button class="couple" ><?=$couple->Name?></button></a>
             

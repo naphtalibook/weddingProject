@@ -1,8 +1,9 @@
 <?php
 require_once 'session_start.php';
-
+//---------------this part is checking the session and how is logdin----------
 if(isset($_GET["action"]) && $_GET["action"] == 'logout'){
     $_SESSION['coupleId'] = null;
+    $_SESSION['coupleName'] = null;
     header('Location: api.php?action=login');
 }
 if (isset($_GET["coupleId"])){
@@ -17,8 +18,12 @@ if (isset($_GET["coupleId"])){
 
   $view->sucssesLogin();
 }
+//-------------------------------------------------------------
+
+//loade the top part of the page
 require_once 'top.php';
 
+//possible GET request
 $possible_url = array(
 "login",
 "tables",
@@ -28,11 +33,13 @@ $possible_url = array(
 "newcouple"
 );
 
+//this checks if action parameter was sent and it is part of possible url array
 if (isset($_GET["action"]) && in_array($_GET["action"], $possible_url)){
 
     switch ($_GET["action"]) 
     {
       case "login":{
+        //require like includ, needs to know the classes Login view and Login controller
         require_once 'controller/loginController.php';
         require_once 'view/login_view.php';
         $controller = new Login_controller();
@@ -41,7 +48,7 @@ if (isset($_GET["action"]) && in_array($_GET["action"], $possible_url)){
         $view->printLogin($allCouples);
       break;
       }
-      case "newcouple":{
+      case "newcouple":{ 
         require_once 'controller/newCopleController.php';
         require_once 'view/newCopleview.php';
          $view = new NewCoupleView();

@@ -1,16 +1,17 @@
 <?php
 require_once 'model/dbconnect.php';
 
-
+//class with only static functions that talks whit db
 class Db_handler{
 
  
     public static function get_all_couples(){
+        //resalt will be the table of the query
         $resalt = Database::getInstance()->getConnection()->query("SELECT * FROM wedding.couples;");
-        if($resalt){
+        if($resalt){ //if the query returns not false
              if($resalt->num_rows > 0){
-                while($row = $resalt->fetch_object()){
-                    $arr[] = $row;
+                while($row = $resalt->fetch_object()){ //takes a table row and makes it an object
+                    $arr[] = $row; //evry interation push the object into the arr array
                 }
                 return $arr;
              }
